@@ -90,16 +90,45 @@
 
 <header class="hero">
   <div class="grid-overlay"></div>
-  <div class="container">
-    <span class="badge">Status: Einsatzbereit</span>
-    <h1 style="margin-top:20px;">Willkommen bei <span class="accent">SSMCNET</span></h1>
-    <p class="lede">Das zentrale Netzwerk für Einsatzkräfte, Ausbildung und Koordination. Alles, was ihr für den Dienst braucht — Abteilungen, Ausbildungswege und die aktuelle Lage — an einem Ort.</p>
-    <div style="display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;">
-      <a href="academy.html" class="btn btn-primary">Zur Medical Academy</a>
+  <div class="container hero-centered">
+    <div class="hero-icon-badge">
+      <svg class="ring" viewBox="0 0 84 84" fill="none">
+        <circle cx="42" cy="42" r="38" stroke="var(--accent)" stroke-width="2" stroke-dasharray="180 60" opacity="0.6"/>
+        <circle cx="42" cy="42" r="38" stroke="var(--accent-light)" stroke-width="2" stroke-dasharray="40 200" transform="rotate(140 42 42)"/>
+      </svg>
+      <svg class="cross" viewBox="0 0 24 24" fill="none">
+        <path d="M10 3h4v7h7v4h-7v7h-4v-7H3V10h7V3z" fill="var(--accent-light)"/>
+      </svg>
+    </div>
+    <span class="eyebrow" style="justify-content:center;">Emergency Medical Services</span>
+    <h1 style="margin-top:18px;"><span class="accent">Sandy Shore</span> Medical Center</h1>
+    <p class="lede">Das offizielle Netzwerk des SSMC — Ausbildung, Fachabteilungen und Funkcodes für den Dienst.</p>
+    <div style="display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; justify-content:center;">
+      <a href="academy.html" class="btn btn-primary">🎓 Zur Medical Academy</a>
       <a href="abteilungen.html" class="btn btn-ghost">Abteilungen ansehen</a>
     </div>
+    <p class="hero-credit">Unter Leitung von <b>Dayanara Morales</b>, <b>Toni Weber</b> &amp; <b>Nia Esco Morales</b></p>
 
-    <div class="ticker">
+    <div class="meta-bar" style="border:none; margin-top:40px; text-align:center;">
+      <div class="meta-item">
+        <div class="value" style="font-size:22px; color:var(--accent-light);">12</div>
+        <div class="label">Ausbildungen</div>
+      </div>
+      <div class="meta-item">
+        <div class="value" style="font-size:22px; color:var(--accent-light);">x-ABCDE</div>
+        <div class="label">Einsatzschema</div>
+      </div>
+      <div class="meta-item">
+        <div class="value" style="font-size:22px; color:var(--accent-light);">SSMC</div>
+        <div class="label">Standort</div>
+      </div>
+      <div class="meta-item">
+        <div class="value" style="font-size:22px; color:var(--accent-light);">20</div>
+        <div class="label">DN-Struktur</div>
+      </div>
+    </div>
+
+    <div class="ticker" style="text-align:left; margin-top:32px;">
       <div class="ticker-label"><span class="ticker-dot"></span> LIVE FUNK</div>
       <div class="ticker-track">
         <span><b>10-1</b> EINTRITT IM DIENST</span>
@@ -126,19 +155,22 @@
     <div class="grid grid-3">
       <div class="card">
         <div class="card-tag">Abteilung</div>
-        <h3>Grundversorgung</h3>
-        <p>Erstversorgung, Patiententransport und die Basis jeder Ausbildung.</p>
+        <h3>Divisionsleitung</h3>
+        <p>Division Leader &amp; Deputy Leader für Personal und Ausbildung.</p>
       </div>
       <div class="card">
         <div class="card-tag">Abteilung</div>
-        <h3>Notfallmedizin</h3>
-        <p>Erweiterte Versorgung kritischer Patienten und Einsatzkoordination.</p>
+        <h3>Medical Division</h3>
+        <p>Personal- und Ausbildungsbereich der laufenden Divisionsarbeit.</p>
       </div>
       <div class="card">
         <div class="card-tag">Abteilung</div>
-        <h3>Einsatzleitung</h3>
-        <p>Koordination, Funkverkehr und Führung im laufenden Einsatz.</p>
+        <h3>Medical Supervisor</h3>
+        <p>Aufsicht und Koordination auf Supervisor-Ebene.</p>
       </div>
+    </div>
+    <div style="margin-top:24px;">
+      <a href="abteilungen.html" class="btn btn-ghost">Alle Abteilungen ansehen →</a>
     </div>
   </div>
 </section>
@@ -150,57 +182,28 @@
       <h2>Eure Ausbildung, Schritt für Schritt</h2>
     </div>
     <div class="training-item">
-      <div class="t-num">1</div>
       <div class="t-body">
-        <h3>Erstsichtung des Patienten</h3>
-        <p>Grundausbildung 1 von 4 · XABCDE-Schema und Erstversorgung</p>
+        <h3><a href="academy-krankheitslehre.html">Krankheitslehre</a></h3>
+        <p>Rang 1 · Praktikant — Grippe, Fieber, Vergiftung</p>
       </div>
-      <div class="t-status">Pflicht</div>
+      <div class="t-status">Offen</div>
     </div>
     <div class="training-item">
-      <div class="t-num">2</div>
       <div class="t-body">
-        <h3>Vitalparameter &amp; Dokumentation</h3>
-        <p>Grundausbildung 2 von 4 · Messwerte erfassen und protokollieren</p>
+        <h3><a href="academy-grundausbildung-1.html">Grundausbildung Teil 1</a></h3>
+        <p>Rang 2 · Auszubildende/r — Vitalparameter messen</p>
       </div>
-      <div class="t-status">Pflicht</div>
+      <div class="t-status">Offen</div>
     </div>
     <div class="training-item">
-      <div class="t-num">3</div>
       <div class="t-body">
-        <h3>Funkverkehr &amp; Codes</h3>
-        <p>Grundausbildung 3 von 4 · Kommunikation im Einsatz</p>
+        <h3><a href="academy-xabcde.html">x-ABCDE-Schema</a></h3>
+        <p>Rang 2 · Auszubildende/r — Priorisierte Notfallversorgung</p>
       </div>
-      <div class="t-status">Pflicht</div>
+      <div class="t-status">Offen</div>
     </div>
     <div style="margin-top:24px;">
       <a href="academy.html" class="btn btn-ghost">Alle Ausbildungen ansehen →</a>
-    </div>
-  </div>
-</section>
-
-<section class="section section-border-top">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Aktuelles</span>
-      <h2>Neuigkeiten aus dem Netzwerk</h2>
-    </div>
-    <div class="grid grid-3">
-      <div class="card">
-        <div class="card-tag">Update</div>
-        <h3>Neue Funkcode-Liste veröffentlicht</h3>
-        <p>Die überarbeitete Übersicht ist ab sofort verfügbar.</p>
-      </div>
-      <div class="card">
-        <div class="card-tag">Ausbildung</div>
-        <h3>Grundausbildung 4 freigeschaltet</h3>
-        <p>Der letzte Baustein der Grundausbildung ist jetzt online.</p>
-      </div>
-      <div class="card">
-        <div class="card-tag">Organisation</div>
-        <h3>Neue Ansprechpartner in der Leitung</h3>
-        <p>Die Leitungsebene wurde erweitert — Details auf der Ansprechpartner-Seite.</p>
-      </div>
     </div>
   </div>
 </section>
