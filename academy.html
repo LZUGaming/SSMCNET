@@ -5,21 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medical Academy — SSMCNET</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23090b10%22 stroke=%22%232e7cf6%22 stroke-width=%222%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-family=%22monospace%22 font-size=%2214%22 fill=%22%237fb0ff%22 text-anchor=%22middle%22%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">S</span>
+      <img src="assets/favicon-32.png" alt="SSMC Logo" class="brand-mark">
       SSMCNET
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Startseite</a></li>
       <li><a href="aktuelles.html">Aktuelles</a></li>
       <li><a href="abteilungen.html">Abteilungen</a></li>
-      <li><a href="academy.html" class="active">Ausbildung</a></li>
+            <li class="nav-item-dropdown" id="ausbildung-dropdown">
+        <button class="nav-drop-trigger" aria-expanded="false">
+          Ausbildung
+          <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg>
+        </button>
+        <div class="nav-dropdown-panel">
+          <div class="nav-drop-group">
+            <div class="nav-drop-label">Grundausbildungen</div>
+            <a href="academy-erstsichtung.html" class="nav-drop-link"><span class="num">1</span> Erstsichtung</a>
+            <a href="academy.html" class="nav-drop-sublink"><span class="glyph">└</span> Einweisungsfahrt</a>
+            <a href="academy.html" class="nav-drop-link"><span class="num">2</span> Schmerz &amp; Medikamente</a>
+            <a href="academy.html" class="nav-drop-link"><span class="num">3</span> Psychologie</a>
+            <a href="academy.html" class="nav-drop-link"><span class="num">4</span> Patientenakte</a>
+          </div>
+          <div class="nav-drop-divider"></div>
+          <div class="nav-drop-group">
+            <div class="nav-drop-label">Weiterbildungen</div>
+            <a href="academy.html" class="nav-drop-link">Radiologie</a>
+            <a href="academy.html" class="nav-drop-link">Not-OP</a>
+            <a href="academy.html" class="nav-drop-link">Trauma</a>
+          </div>
+          <div class="nav-drop-divider"></div>
+          <a href="academy.html" class="nav-drop-item">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Medic-Lexikon
+          </a>
+          <div class="nav-drop-divider"></div>
+          <div class="nav-drop-group" style="padding-bottom:2px;">
+            <div class="nav-drop-label">Intern</div>
+          </div>
+          <div class="nav-drop-item locked">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            Mentorenbereich
+          </div>
+        </div>
+      </li>
       <li><a href="karriere.html">Karriere</a></li>
       <li><a href="funkcodes.html">Funkcodes</a></li>
       <li><a href="ansprechpartner.html">Ansprechpartner</a></li>
@@ -50,7 +85,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Untergruppe 1</span>
-      <h2>Grundausbildung</h2>
+      <h2>Grundausbildungen</h2>
     </div>
     <div class="training-item">
       <div class="t-num">1</div>
@@ -58,31 +93,38 @@
         <h3><a href="academy-erstsichtung.html">Erstsichtung des Patienten</a></h3>
         <p>Das XABCDE-Schema, Bewusstseinsprüfung und Vitalparameter</p>
       </div>
-      <div class="t-status">Abgeschlossen</div>
+      <div class="t-status">Offen</div>
+    </div>
+    <div class="training-item" style="margin-top:8px; margin-left:24px; padding:16px 24px;">
+      <div class="t-body">
+        <h3 style="font-size:14.5px;">└ Einweisungsfahrt</h3>
+        <p>Praktischer Abschluss der Grundausbildung im Fahrzeug</p>
+      </div>
+      <div class="t-status">Offen</div>
     </div>
     <div class="training-item">
       <div class="t-num">2</div>
       <div class="t-body">
-        <h3>Vitalparameter &amp; Dokumentation</h3>
-        <p>Messwerte korrekt erfassen und im Einsatzprotokoll festhalten</p>
+        <h3>Schmerz &amp; Medikamente</h3>
+        <p>Schmerztherapie und Medikamentengabe in der Grundversorgung</p>
       </div>
       <div class="t-status">Offen</div>
     </div>
     <div class="training-item">
       <div class="t-num">3</div>
       <div class="t-body">
-        <h3>Funkverkehr &amp; Codes</h3>
-        <p>Standardisierte Kommunikation zwischen Einsatzkräften und Leitstelle</p>
+        <h3>Psychologie</h3>
+        <p>Umgang mit Patienten in Ausnahmesituationen</p>
       </div>
-      <div class="t-status">Gesperrt</div>
+      <div class="t-status">Offen</div>
     </div>
     <div class="training-item">
       <div class="t-num">4</div>
       <div class="t-body">
-        <h3>Einweisungsfahrt</h3>
-        <p>Praktischer Abschluss der Grundausbildung im Fahrzeug</p>
+        <h3>Patientenakte</h3>
+        <p>Korrekte Dokumentation von Diagnose, Behandlung und Nachsorge</p>
       </div>
-      <div class="t-status">Gesperrt</div>
+      <div class="t-status">Offen</div>
     </div>
   </div>
 </section>
@@ -91,23 +133,31 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Untergruppe 2</span>
-      <h2>Weiterführende Ausbildung</h2>
+      <h2>Weiterbildungen</h2>
     </div>
     <div class="training-item">
       <div class="t-num">1</div>
       <div class="t-body">
-        <h3>Erweiterte Notfallversorgung</h3>
-        <p>Kritische Patienten stabilisieren und Prioritäten setzen</p>
+        <h3>Radiologie</h3>
+        <p>Röntgen, MRT und CT im Behandlungsablauf</p>
       </div>
-      <div class="t-status">Gesperrt</div>
+      <div class="t-status">Offen</div>
     </div>
     <div class="training-item">
       <div class="t-num">2</div>
       <div class="t-body">
-        <h3>Medikamentenlehre</h3>
-        <p>Wirkstoffe, Dosierung und Dokumentationspflicht</p>
+        <h3>Not-OP</h3>
+        <p>Operative Erstversorgung bei kritischen Notfällen</p>
       </div>
-      <div class="t-status">Gesperrt</div>
+      <div class="t-status">Offen</div>
+    </div>
+    <div class="training-item">
+      <div class="t-num">3</div>
+      <div class="t-body">
+        <h3>Trauma</h3>
+        <p>Versorgung schwerer Verletzungen und Unfälle</p>
+      </div>
+      <div class="t-status">Offen</div>
     </div>
   </div>
 </section>
@@ -115,16 +165,15 @@
 <section class="section section-border-top">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Untergruppe 3</span>
-      <h2>Führungsebene</h2>
+      <span class="eyebrow">Referenz</span>
+      <h2>Medic-Lexikon</h2>
     </div>
     <div class="training-item">
-      <div class="t-num">1</div>
       <div class="t-body">
-        <h3>Einsatzleitung &amp; Koordination</h3>
-        <p>Führung mehrerer Einheiten und Kommunikation mit der Leitstelle</p>
+        <h3>Nachschlagewerk für Fachbegriffe</h3>
+        <p>Krankheitsbilder, Medikamente und Verfahren im Überblick</p>
       </div>
-      <div class="t-status">Gesperrt</div>
+      <div class="t-status">Offen</div>
     </div>
   </div>
 </section>

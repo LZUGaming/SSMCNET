@@ -5,21 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Funkcodes — SSMCNET</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23090b10%22 stroke=%22%232e7cf6%22 stroke-width=%222%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-family=%22monospace%22 font-size=%2214%22 fill=%22%237fb0ff%22 text-anchor=%22middle%22%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">S</span>
+      <img src="assets/favicon-32.png" alt="SSMC Logo" class="brand-mark">
       SSMCNET
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Startseite</a></li>
       <li><a href="aktuelles.html">Aktuelles</a></li>
       <li><a href="abteilungen.html">Abteilungen</a></li>
-      <li><a href="academy.html">Ausbildung</a></li>
+            <li class="nav-item-dropdown" id="ausbildung-dropdown">
+        <button class="nav-drop-trigger" aria-expanded="false">
+          Ausbildung
+          <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg>
+        </button>
+        <div class="nav-dropdown-panel">
+          <div class="nav-drop-group">
+            <div class="nav-drop-label">Grundausbildungen</div>
+            <a href="academy-erstsichtung.html" class="nav-drop-link"><span class="num">1</span> Erstsichtung</a>
+            <a href="academy.html" class="nav-drop-sublink"><span class="glyph">└</span> Einweisungsfahrt</a>
+            <a href="academy.html" class="nav-drop-link"><span class="num">2</span> Schmerz &amp; Medikamente</a>
+            <a href="academy.html" class="nav-drop-link"><span class="num">3</span> Psychologie</a>
+            <a href="academy.html" class="nav-drop-link"><span class="num">4</span> Patientenakte</a>
+          </div>
+          <div class="nav-drop-divider"></div>
+          <div class="nav-drop-group">
+            <div class="nav-drop-label">Weiterbildungen</div>
+            <a href="academy.html" class="nav-drop-link">Radiologie</a>
+            <a href="academy.html" class="nav-drop-link">Not-OP</a>
+            <a href="academy.html" class="nav-drop-link">Trauma</a>
+          </div>
+          <div class="nav-drop-divider"></div>
+          <a href="academy.html" class="nav-drop-item">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Medic-Lexikon
+          </a>
+          <div class="nav-drop-divider"></div>
+          <div class="nav-drop-group" style="padding-bottom:2px;">
+            <div class="nav-drop-label">Intern</div>
+          </div>
+          <div class="nav-drop-item locked">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            Mentorenbereich
+          </div>
+        </div>
+      </li>
       <li><a href="karriere.html">Karriere</a></li>
       <li><a href="funkcodes.html" class="active">Funkcodes</a></li>
       <li><a href="ansprechpartner.html">Ansprechpartner</a></li>
