@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ausbildungen bearbeiten — SSMCNET</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  .edit-wrap { max-width: 900px; margin: 0 auto; padding: 40px 32px 100px; }
+  .edit-field { margin-bottom: 20px; }
+  .edit-field label { display:block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .edit-field input, .edit-field select, .edit-field textarea {
+    width: 100%; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius);
+    color: var(--text-primary); font-family: var(--font-body); font-size: 14.5px; padding: 12px 14px; box-sizing: border-box;
+  }
+  .edit-field textarea { min-height: 320px; font-family: var(--font-mono); font-size: 13px; line-height: 1.5; resize: vertical; }
+  .edit-field input:focus, .edit-field select:focus, .edit-field textarea:focus { outline: none; border-color: var(--accent-border); }
+  #login-screen { max-width: 380px; margin: 120px auto; text-align: center; }
+  #save-msg { margin-top: 16px; font-size: 14px; }
+  #save-msg.ok { color: var(--status-green); }
+  #save-msg.err { color: #ff6b6b; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/favicon-32.png" alt="SSMC Logo" class="brand-mark">
+      SSMCNET
+    </a>
+    <span style="color:var(--text-muted); font-family:var(--font-mono); font-size:12px;">Interner Bereich</span>
+  </div>
+</nav>
+
+<div id="login-screen">
+  <span class="eyebrow" style="justify-content:center;">Intern</span>
+  <h1 style="margin-top:14px; font-size:22px;">Passwort erforderlich</h1>
+  <div class="edit-field" style="margin-top:24px; text-align:left;">
+    <input type="password" id="pw-input" placeholder="Passwort">
+  </div>
+  <button class="btn btn-primary" id="pw-submit" style="width:100%; justify-content:center;">Einloggen</button>
+  <p id="pw-error" style="color:#ff6b6b; margin-top:12px; font-size:13px; display:none;">Falsches Passwort.</p>
+</div>
+
+<div class="edit-wrap" id="edit-screen" style="display:none;">
+  <span class="eyebrow">Intern</span>
+  <h1 style="margin-top:14px; font-size:28px;">Ausbildungen bearbeiten</h1>
+  <p class="lede" style="max-width:none; margin-top:10px;">Änderungen sind sofort live. Bitte vorsichtig sein — es gibt kein Zurück-Knopf.</p>
+
+  <div class="edit-field" style="margin-top:32px;">
+    <label>Ausbildung auswählen</label>
+    <select id="select-training"><option>Lädt…</option></select>
+  </div>
+
+  <div id="form-fields" style="display:none;">
+    <div class="edit-field">
+      <label>Rang-Nummer (1–8)</label>
+      <input type="number" id="f-rang-nummer" min="1" max="8">
+    </div>
+    <div class="edit-field">
+      <label>Rang-Name</label>
+      <input type="text" id="f-rang-name">
+    </div>
+    <div class="edit-field">
+      <label>Titel</label>
+      <input type="text" id="f-titel">
+    </div>
+    <div class="edit-field">
+      <label>Kurzbeschreibung (im Dropdown &amp; Übersicht sichtbar)</label>
+      <input type="text" id="f-beschreibung">
+    </div>
+    <div class="edit-field">
+      <label>Status</label>
+      <select id="f-status">
+        <option value="offen">Offen</option>
+        <option value="bald">Bald</option>
+      </select>
+    </div>
+    <div class="edit-field">
+      <label>Reihenfolge (innerhalb des Rangs)</label>
+      <input type="number" id="f-reihenfolge" min="1">
+    </div>
+    <div class="edit-field">
+      <label>Seiteninhalt (HTML — vorsichtig bearbeiten, Struktur beibehalten)</label>
+      <textarea id="f-inhalt" spellcheck="false"></textarea>
+    </div>
+    <button class="btn btn-primary" id="save-btn">Speichern</button>
+    <span id="save-msg"></span>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/bearbeiten.js"></script>
+</body>
+</html>
