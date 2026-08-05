@@ -62,6 +62,7 @@ async function loadTraining(id) {
   document.getElementById('f-titel').value = data.titel;
   document.getElementById('f-beschreibung').value = data.beschreibung || '';
   document.getElementById('f-status').value = data.status;
+  document.getElementById('f-slug').value = data.slug || '';
   document.getElementById('f-reihenfolge').value = data.reihenfolge;
   document.getElementById('f-inhalt').value = data.inhalt || '';
   document.getElementById('form-fields').style.display = 'block';
@@ -80,6 +81,7 @@ async function saveTraining() {
     titel: document.getElementById('f-titel').value,
     beschreibung: document.getElementById('f-beschreibung').value,
     status: document.getElementById('f-status').value,
+    slug: document.getElementById('f-slug').value || null,
     reihenfolge: parseInt(document.getElementById('f-reihenfolge').value, 10),
     inhalt: document.getElementById('f-inhalt').value,
   };
