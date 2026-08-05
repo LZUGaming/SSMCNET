@@ -50,7 +50,7 @@ function renderDropdown(panel, groups) {
     html += `<div class="nav-drop-label">Rang ${group.rang_nummer} · ${escapeHtml(group.rang_name)}</div>`;
     group.items.forEach(item => {
       if (item.status === 'offen' && item.slug) {
-        html += `<a href="${escapeHtml(item.slug)}" class="nav-drop-link">${escapeHtml(item.titel)}</a>`;
+        html += `<a href="academy-detail.html?slug=${encodeURIComponent(item.slug)}" class="nav-drop-link">${escapeHtml(item.titel)}</a>`;
       } else {
         html += `<a href="academy.html" class="nav-drop-link nodoc">${escapeHtml(item.titel)} <span class="nav-drop-tag">bald</span></a>`;
       }
@@ -69,7 +69,7 @@ function renderAcademyList(container, groups) {
     html += `<div class="section-head"><span class="eyebrow">Rang ${group.rang_nummer}</span><h2>${escapeHtml(group.rang_name)}</h2></div>`;
     group.items.forEach(item => {
       const titleHtml = (item.status === 'offen' && item.slug)
-        ? `<a href="${escapeHtml(item.slug)}">${escapeHtml(item.titel)}</a>`
+        ? `<a href="academy-detail.html?slug=${encodeURIComponent(item.slug)}">${escapeHtml(item.titel)}</a>`
         : escapeHtml(item.titel);
       const statusLabel = item.status === 'offen' ? 'Offen' : 'Bald';
       html += `<div class="training-item">
