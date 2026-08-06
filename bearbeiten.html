@@ -43,6 +43,24 @@
   .rich-editable:focus { outline: none; }
   .rich-editable .section { padding: 20px 0; }
   .rich-editable .container { max-width: none; padding: 0; }
+  .rich-editor-wrapper { position: relative; }
+  .rich-editable img { cursor: pointer; }
+  .rich-editable img.img-selected { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .img-toolbar {
+    position: absolute;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--accent-border);
+    border-radius: 4px;
+    padding: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    z-index: 20;
+  }
+  .img-toolbar .rich-btn { padding: 5px 8px; font-size: 12px; white-space: nowrap; }
+  .img-toolbar-sep { width: 1px; height: 20px; background: var(--border); margin: 0 2px; }
+  .img-delete-btn { color: #ff8080; }
 </style>
 </head>
 <body>
