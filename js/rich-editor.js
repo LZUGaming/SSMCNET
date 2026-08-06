@@ -15,6 +15,11 @@ function initRichEditor(textareaId) {
   const toolbar = document.createElement('div');
   toolbar.className = 'rich-toolbar';
 
+  const editable = document.createElement('div');
+  editable.className = 'rich-editable content-body';
+  editable.contentEditable = 'true';
+  editable.spellcheck = false;
+
   const buttons = [
     { label: 'B', title: 'Fett', cmd: 'bold', style: 'font-weight:700;' },
     { label: 'I', title: 'Kursiv', cmd: 'italic', style: 'font-style:italic;' },
@@ -40,16 +45,69 @@ function initRichEditor(textareaId) {
     toolbar.appendChild(btn);
   });
 
+  // Bild-Button mit Upload zu Supabase Storage
+  const imgBtn = document.createElement('button');
+  imgBtn.type = 'button';
+  imgBtn.className = 'rich-btn';
+  imgBtn.title = 'Bild einfügen';
+  imgBtn.textContent = '🖼️ Bild';
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/*';
+  fileInput.style.display = 'none';
+
+  let savedRange = null;
+  editable.addEventListener('mouseup', () => { savedRange = getCurrentRange(); });
+  editable.addEventListener('keyup', () => { savedRange = getCurrentRange(); });
+
+  function getCurrentRange() {
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount > 0 && editable.contains(sel.anchorNode)) {
+      return sel.getRangeAt(0).cloneRange();
+    }
+    return null;
+  }
+
+  imgBtn.addEventListener('mousedown', e => e.preventDefault());
+  imgBtn.addEventListener('click', () => fileInput.click());
+
+  fileInput.addEventListener('change', async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    imgBtn.textContent = 'Lädt hoch…';
+    imgBtn.disabled = true;
+    try {
+      if (!client) throw new Error('Nicht verbunden');
+      const ext = file.name.split('.').pop();
+      const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error: upErr } = await client.storage.from('bilder').upload(path, file);
+      if (upErr) throw upErr;
+      const { data } = client.storage.from('bilder').getPublicUrl(path);
+      editable.focus();
+      if (savedRange) {
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(savedRange);
+      }
+      document.execCommand('insertHTML', false, `<img src="${data.publicUrl}" alt="" style="max-width:100%; border-radius:4px; margin:12px 0;">`);
+      syncToTextarea();
+    } catch (err) {
+      alert('Bild-Upload fehlgeschlagen: ' + err.message);
+    } finally {
+      imgBtn.textContent = '🖼️ Bild';
+      imgBtn.disabled = false;
+      fileInput.value = '';
+    }
+  });
+
+  toolbar.appendChild(imgBtn);
+  toolbar.appendChild(fileInput);
+
   const toggleBtn = document.createElement('button');
   toggleBtn.type = 'button';
   toggleBtn.className = 'rich-btn rich-toggle';
   toggleBtn.textContent = 'Code anzeigen';
   toolbar.appendChild(toggleBtn);
-
-  const editable = document.createElement('div');
-  editable.className = 'rich-editable content-body';
-  editable.contentEditable = 'true';
-  editable.spellcheck = false;
 
   wrapper.appendChild(toolbar);
   wrapper.appendChild(editable);
