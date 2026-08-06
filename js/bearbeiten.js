@@ -44,6 +44,9 @@ async function initEditor() {
   document.getElementById('save-seite-btn').addEventListener('click', saveSeite);
 
   await Promise.all([refreshList(), refreshSeitenList()]);
+
+  initRichEditor('f-inhalt');
+  initRichEditor('s-inhalt');
 }
 
 function switchMode(mode) {
@@ -84,6 +87,7 @@ function startNew() {
   document.getElementById('f-slug').value = '';
   document.getElementById('f-reihenfolge').value = '';
   document.getElementById('f-inhalt').value = '';
+  refreshRichEditor('f-inhalt');
   document.getElementById('form-fields').style.display = 'block';
   document.getElementById('save-msg').textContent = '';
   document.getElementById('save-btn').textContent = 'Neu anlegen';
@@ -107,6 +111,7 @@ async function loadTraining(id) {
   document.getElementById('f-slug').value = data.slug || '';
   document.getElementById('f-reihenfolge').value = data.reihenfolge;
   document.getElementById('f-inhalt').value = data.inhalt || '';
+  refreshRichEditor('f-inhalt');
   document.getElementById('form-fields').style.display = 'block';
   document.getElementById('save-msg').textContent = '';
 }
@@ -186,6 +191,7 @@ async function loadSeite(seiteKey) {
   }
   currentSeiteKey = data.seite_key;
   document.getElementById('s-inhalt').value = data.inhalt || '';
+  refreshRichEditor('s-inhalt');
   document.getElementById('seite-fields').style.display = 'block';
   document.getElementById('save-seite-msg').textContent = '';
 }
