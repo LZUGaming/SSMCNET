@@ -21,6 +21,12 @@
   #save-msg { margin-top: 16px; font-size: 14px; }
   #save-msg.ok { color: var(--status-green); }
   #save-msg.err { color: #ff6b6b; }
+  .mode-btn {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    color: var(--text-secondary); font-family: var(--font-body); font-weight: 500; font-size: 14.5px;
+    padding: 12px 18px; cursor: pointer;
+  }
+  .mode-btn.active { color: var(--accent-light); border-bottom-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -47,12 +53,21 @@
 
 <div class="edit-wrap" id="edit-screen" style="display:none;">
   <span class="eyebrow">Intern</span>
-  <h1 style="margin-top:14px; font-size:28px;">Ausbildungen bearbeiten</h1>
+  <h1 style="margin-top:14px; font-size:28px;">Website bearbeiten</h1>
   <p class="lede" style="max-width:none; margin-top:10px;">Änderungen sind sofort live. Bitte vorsichtig sein — es gibt kein Zurück-Knopf.</p>
 
-  <div class="edit-field" style="margin-top:32px;">
-    <label>Ausbildung auswählen</label>
-    <select id="select-training"><option>Lädt…</option></select>
+  <div style="display:flex; gap:8px; margin-top:28px; border-bottom:1px solid var(--border);">
+    <button class="mode-btn active" id="mode-ausbildungen-btn" type="button">Ausbildungen</button>
+    <button class="mode-btn" id="mode-seiten-btn" type="button">Seiten</button>
+  </div>
+
+  <div id="mode-ausbildungen">
+  <div class="edit-field" style="margin-top:32px; display:flex; gap:12px; align-items:end;">
+    <div style="flex:1;">
+      <label>Ausbildung auswählen</label>
+      <select id="select-training"><option>Lädt…</option></select>
+    </div>
+    <button class="btn btn-ghost" id="new-btn" type="button">+ Neu anlegen</button>
   </div>
 
   <div id="form-fields" style="display:none;">
@@ -94,8 +109,23 @@
     <button class="btn btn-primary" id="save-btn">Speichern</button>
     <span id="save-msg"></span>
   </div>
-</div>
+  </div>
 
+  <div id="mode-seiten" style="display:none;">
+    <div class="edit-field" style="margin-top:32px;">
+      <label>Seite auswählen</label>
+      <select id="select-seite"><option>Lädt…</option></select>
+    </div>
+    <div id="seite-fields" style="display:none;">
+      <div class="edit-field">
+        <label>Seiteninhalt (HTML — vorsichtig bearbeiten, Struktur beibehalten)</label>
+        <textarea id="s-inhalt" spellcheck="false" style="min-height:480px;"></textarea>
+      </div>
+      <button class="btn btn-primary" id="save-seite-btn">Speichern</button>
+      <span id="save-seite-msg"></span>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js"></script>
 <script src="js/bearbeiten.js"></script>
