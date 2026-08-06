@@ -114,7 +114,12 @@ function initRichEditor(textareaId) {
   textarea.parentNode.insertBefore(wrapper, textarea);
 
   function syncToTextarea() {
-    textarea.value = editable.innerHTML;
+    const clone = editable.cloneNode(true);
+    clone.querySelectorAll('img.img-selected').forEach(img => {
+      img.classList.remove('img-selected');
+      if (!img.className) img.removeAttribute('class');
+    });
+    textarea.value = clone.innerHTML;
   }
   function syncFromTextarea() {
     editable.innerHTML = textarea.value || '<p>Hier klicken und Text eingeben …</p>';
@@ -122,6 +127,120 @@ function initRichEditor(textareaId) {
 
   editable.addEventListener('input', syncToTextarea);
   syncFromTextarea();
+  setupImageControls();
+
+  function setupImageControls() {
+    const imgToolbar = document.createElement('div');
+    imgToolbar.className = 'img-toolbar';
+    imgToolbar.style.display = 'none';
+
+    const sizeOpts = [
+      { label: '25%', width: '25%' },
+      { label: '50%', width: '50%' },
+      { label: '75%', width: '75%' },
+      { label: '100%', width: '100%' },
+    ];
+    const alignOpts = [
+      { label: '⯇ Links', align: 'left' },
+      { label: '≡ Mitte', align: 'center' },
+      { label: '⯈ Rechts', align: 'right' },
+    ];
+
+    let activeImg = null;
+
+    sizeOpts.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'rich-btn';
+      btn.textContent = opt.label;
+      btn.addEventListener('mousedown', e => e.preventDefault());
+      btn.addEventListener('click', () => {
+        if (!activeImg) return;
+        activeImg.style.width = opt.width;
+        syncToTextarea();
+      });
+      imgToolbar.appendChild(btn);
+    });
+
+    const sep1 = document.createElement('span');
+    sep1.className = 'img-toolbar-sep';
+    imgToolbar.appendChild(sep1);
+
+    alignOpts.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'rich-btn';
+      btn.textContent = opt.label;
+      btn.addEventListener('mousedown', e => e.preventDefault());
+      btn.addEventListener('click', () => {
+        if (!activeImg) return;
+        applyAlign(activeImg, opt.align);
+        syncToTextarea();
+      });
+      imgToolbar.appendChild(btn);
+    });
+
+    const sep2 = document.createElement('span');
+    sep2.className = 'img-toolbar-sep';
+    imgToolbar.appendChild(sep2);
+
+    const delBtn = document.createElement('button');
+    delBtn.type = 'button';
+    delBtn.className = 'rich-btn img-delete-btn';
+    delBtn.textContent = '🗑 Entfernen';
+    delBtn.addEventListener('mousedown', e => e.preventDefault());
+    delBtn.addEventListener('click', () => {
+      if (!activeImg) return;
+      activeImg.remove();
+      hideImgToolbar();
+      syncToTextarea();
+    });
+    imgToolbar.appendChild(delBtn);
+
+    wrapper.appendChild(imgToolbar);
+
+    function applyAlign(img, align) {
+      img.style.float = '';
+      img.style.margin = '';
+      img.style.display = '';
+      if (align === 'left') {
+        img.style.float = 'left';
+        img.style.margin = '4px 16px 8px 0';
+      } else if (align === 'right') {
+        img.style.float = 'right';
+        img.style.margin = '4px 0 8px 16px';
+      } else {
+        img.style.display = 'block';
+        img.style.margin = '12px auto';
+      }
+    }
+
+    function showImgToolbar(img) {
+      activeImg = img;
+      img.classList.add('img-selected');
+      const imgRect = img.getBoundingClientRect();
+      const wrapRect = wrapper.getBoundingClientRect();
+      imgToolbar.style.display = 'flex';
+      imgToolbar.style.top = (imgRect.top - wrapRect.top - 42) + 'px';
+      imgToolbar.style.left = Math.max(0, imgRect.left - wrapRect.left) + 'px';
+    }
+    function hideImgToolbar() {
+      if (activeImg) activeImg.classList.remove('img-selected');
+      activeImg = null;
+      imgToolbar.style.display = 'none';
+    }
+
+    editable.addEventListener('click', e => {
+      if (e.target.tagName === 'IMG') {
+        showImgToolbar(e.target);
+      } else {
+        hideImgToolbar();
+      }
+    });
+    document.addEventListener('click', e => {
+      if (!wrapper.contains(e.target)) hideImgToolbar();
+    });
+  }
 
   let showingCode = false;
   toggleBtn.addEventListener('click', () => {
