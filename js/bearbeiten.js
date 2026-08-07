@@ -152,10 +152,13 @@ async function saveTraining() {
     return;
   }
 
-  const { error } = await client.from('ausbildungen').update(updates).eq('id', currentId);
+  const { data, error } = await client.from('ausbildungen').update(updates).eq('id', currentId).select();
   if (error) {
     msg.className = 'err';
     msg.textContent = 'Fehler beim Speichern: ' + error.message;
+  } else if (!data || data.length === 0) {
+    msg.className = 'err';
+    msg.textContent = 'Achtung: Es wurde KEINE Zeile geändert (0 Treffer für ID ' + currentId + '). Bitte Seite neu laden und nochmal versuchen.';
   } else {
     msg.className = 'ok';
     msg.textContent = 'Gespeichert ✓';
@@ -205,14 +208,18 @@ async function saveSeite() {
   msg.className = '';
   msg.textContent = 'Speichert…';
 
-  const { error } = await client
+  const { data, error } = await client
     .from('seiten')
     .update({ inhalt: document.getElementById('s-inhalt').value, aktualisiert_am: new Date().toISOString() })
-    .eq('seite_key', currentSeiteKey);
+    .eq('seite_key', currentSeiteKey)
+    .select();
 
   if (error) {
     msg.className = 'err';
     msg.textContent = 'Fehler beim Speichern: ' + error.message;
+  } else if (!data || data.length === 0) {
+    msg.className = 'err';
+    msg.textContent = 'Achtung: Es wurde KEINE Zeile geändert (0 Treffer). Bitte Seite neu laden und nochmal versuchen.';
   } else {
     msg.className = 'ok';
     msg.textContent = 'Gespeichert ✓';
