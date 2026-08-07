@@ -24,62 +24,12 @@
           Ausbildung
           <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg>
         </button>
-        <div class="nav-dropdown-panel">
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 1 · Praktikant</div>
-            <a href="academy-fahrsicherheitspruefung.html" class="nav-drop-link">Fahrsicherheitsprüfung Teil 1</a>
-            <a href="academy-krankheitslehre.html" class="nav-drop-link">Krankheitslehre</a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 2 · Auszubildende/r</div>
-            <a href="academy-grundausbildung-1.html" class="nav-drop-link">Grundausbildung Teil 1</a>
-            <a href="academy-xabcde.html" class="nav-drop-link">x-ABCDE-Schema</a>
-            <a href="academy.html" class="nav-drop-link nodoc">Flugrettung (optional) <span class="nav-drop-tag">bald</span></a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 3 · Ersthelfer/in</div>
-            <a href="academy-wasserrettung.html" class="nav-drop-link">Wasserrettung</a>
-            <a href="academy-verbandskastenlizenz.html" class="nav-drop-link">Verbandskastenlizenz</a>
-            <a href="academy-medicnet.html" class="nav-drop-link">Medicnet-Schulung</a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 4 · Rettungssanitäter/in</div>
-            <a href="academy-grundausbildung-2.html" class="nav-drop-link">Grundausbildung Teil 2</a>
-            <a href="academy-sampler.html" class="nav-drop-link">SAMPLER-Schema</a>
-            <a href="academy.html" class="nav-drop-link nodoc">PBS-Schein <span class="nav-drop-tag">bald</span></a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 5 · Notfallsanitäter/in</div>
-            <a href="academy-erweiterte-fsp.html" class="nav-drop-link">Erweiterte Fahrsicherheitsprüfung</a>
-            <a href="academy.html" class="nav-drop-link nodoc">Erste-Hilfe-Schulung (Stabischein) <span class="nav-drop-tag">bald</span></a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 6 · Allgemeinmediziner/in</div>
-            <a href="academy-arztpruefung-chirurgie.html" class="nav-drop-link">Arztprüfung (Allgemein Chirurgie)</a>
-            <a href="academy-erweiterte-behandlung.html" class="nav-drop-link">Erweiterte Behandlung</a>
-            <a href="academy.html" class="nav-drop-link nodoc">Krankenversicherungsschulung <span class="nav-drop-tag">bald</span></a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 7 · Angehende Facharzt/ärztin</div>
-            <a href="academy-operative-vorbereitung.html" class="nav-drop-link">Operative Vorbereitung</a>
-            <a href="academy.html" class="nav-drop-link nodoc">Fachbereichsfindung <span class="nav-drop-tag">bald</span></a>
-          </div>
-          <div class="nav-drop-divider"></div>
-          <div class="nav-drop-group">
-            <div class="nav-drop-label">Rang 8 · Facharzt/ärztin</div>
-            <a href="academy-radiologie.html" class="nav-drop-link">Fachbereich: Radiologie</a>
-            <a href="academy-anaesthesie.html" class="nav-drop-link">Fachbereich: Anästhesie</a>
-            <a href="academy-schoenheitschirurgie.html" class="nav-drop-link">Fachbereich: Schönheitschirurgie</a>
-          </div>
+        <div class="nav-dropdown-panel" id="ausbildung-dropdown-panel">
+          <div class="nav-drop-group"><div class="nav-drop-label">Lädt…</div></div>
         </div>
       </li>
       <li><a href="karriere.html">Karriere</a></li>
+      <li><a href="kleidung.html">Kleidung</a></li>
       <li><a href="funkcodes.html">Funkcodes</a></li>
       <li><a href="ansprechpartner.html">Ansprechpartner</a></li>
     </ul>
@@ -169,6 +119,9 @@ Unterkühlung: &lt;36 °C &nbsp;·&nbsp; Normalwert: 36,1–37,2 °C &nbsp;·&nb
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/ausbildung-dynamic.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
