@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dienstkleidung — SSMCNET Medical Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/favicon-32.png" alt="SSMC Logo" class="brand-mark">
+      SSMCNET
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="aktuelles.html">Aktuelles</a></li>
+      <li><a href="abteilungen.html">Abteilungen</a></li>
+            <li class="nav-item-dropdown" id="ausbildung-dropdown">
+        <button class="nav-drop-trigger" aria-expanded="false">
+          Ausbildung
+          <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" id="ausbildung-dropdown-panel">
+          <div class="nav-drop-group"><div class="nav-drop-label">Lädt…</div></div>
+        </div>
+      </li>
+      <li><a href="karriere.html">Karriere</a></li>
+      <li><a href="funkcodes.html">Funkcodes</a></li>
+      <li><a href="ansprechpartner.html">Ansprechpartner</a></li>
+    </ul>
+    <a href="https://pc.medicnet.li/" class="nav-cta" target="_blank" rel="noopener">Medicnet</a>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div id="seiten-content" data-seite="kleidung">
+  <div class="section"><div class="container"><p class="lede">Wird geladen…</p></div></div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">SSMCNET © 2026</div>
+    <div class="footer-links">
+      <a href="ansprechpartner.html">Ansprechpartner</a>
+      <a href="index.html">Startseite</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/ausbildung-dynamic.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/seiten-dynamic.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
