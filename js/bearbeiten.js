@@ -29,6 +29,7 @@ async function initEditor() {
 
   document.getElementById('mode-ausbildungen-btn').addEventListener('click', () => switchMode('ausbildungen'));
   document.getElementById('mode-seiten-btn').addEventListener('click', () => switchMode('seiten'));
+  document.getElementById('mode-verlauf-btn').addEventListener('click', () => switchMode('verlauf'));
   document.getElementById('select-training').addEventListener('change', () => {
     const val = document.getElementById('select-training').value;
     if (val) loadTraining(val);
@@ -50,11 +51,13 @@ async function initEditor() {
 }
 
 function switchMode(mode) {
-  const isAusbildungen = mode === 'ausbildungen';
-  document.getElementById('mode-ausbildungen').style.display = isAusbildungen ? 'block' : 'none';
-  document.getElementById('mode-seiten').style.display = isAusbildungen ? 'none' : 'block';
-  document.getElementById('mode-ausbildungen-btn').classList.toggle('active', isAusbildungen);
-  document.getElementById('mode-seiten-btn').classList.toggle('active', !isAusbildungen);
+  document.getElementById('mode-ausbildungen').style.display = mode === 'ausbildungen' ? 'block' : 'none';
+  document.getElementById('mode-seiten').style.display = mode === 'seiten' ? 'block' : 'none';
+  document.getElementById('mode-verlauf').style.display = mode === 'verlauf' ? 'block' : 'none';
+  document.getElementById('mode-ausbildungen-btn').classList.toggle('active', mode === 'ausbildungen');
+  document.getElementById('mode-seiten-btn').classList.toggle('active', mode === 'seiten');
+  document.getElementById('mode-verlauf-btn').classList.toggle('active', mode === 'verlauf');
+  if (mode === 'verlauf') loadVerlauf();
 }
 
 async function refreshList() {
@@ -214,4 +217,85 @@ async function saveSeite() {
     msg.className = 'ok';
     msg.textContent = 'Gespeichert ✓';
   }
+}
+
+// ============================================================
+// VERLAUF (automatische Änderungshistorie, Wiederherstellen)
+// ============================================================
+
+async function loadVerlauf() {
+  const list = document.getElementById('verlauf-list');
+  list.textContent = 'Lädt…';
+
+  const { data, error } = await client
+    .from('aenderungsverlauf')
+    .select('*')
+    .order('geaendert_am', { ascending: false })
+    .limit(50);
+
+  if (error) {
+    list.textContent = 'Fehler beim Laden: ' + error.message;
+    return;
+  }
+  if (!data || data.length === 0) {
+    list.textContent = 'Noch keine Änderungen aufgezeichnet.';
+    return;
+  }
+
+  list.innerHTML = '';
+  data.forEach(entry => {
+    const div = document.createElement('div');
+    div.className = 'verlauf-item';
+
+    const label = entry.tabelle === 'ausbildungen'
+      ? (entry.daten.titel || 'Ausbildung')
+      : (entry.daten.titel || entry.datensatz_id);
+    const aktionLabel = entry.aktion === 'delete' ? 'gelöscht' : 'geändert';
+    const zeit = new Date(entry.geaendert_am).toLocaleString('de-DE');
+
+    const meta = document.createElement('div');
+    meta.className = 'verlauf-meta';
+    meta.innerHTML = `<b>${escapeHtmlB(label)}</b> — ${entry.tabelle === 'ausbildungen' ? 'Ausbildung' : 'Seite'} ${aktionLabel}<div class="verlauf-time">${zeit}</div>`;
+
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-ghost';
+    btn.textContent = 'Wiederherstellen';
+    btn.addEventListener('click', () => restoreVerlauf(entry, btn));
+
+    div.appendChild(meta);
+    div.appendChild(btn);
+    list.appendChild(div);
+  });
+}
+
+async function restoreVerlauf(entry, btn) {
+  if (!confirm('Diesen Stand wiederherstellen? Der aktuelle Stand wird überschrieben.')) return;
+  btn.disabled = true;
+  btn.textContent = 'Stelle wieder her…';
+
+  const table = entry.tabelle;
+  const daten = entry.daten;
+  let error;
+
+  if (table === 'ausbildungen') {
+    ({ error } = await client.from('ausbildungen').upsert(daten, { onConflict: 'id' }));
+  } else {
+    ({ error } = await client.from('seiten').upsert(daten, { onConflict: 'seite_key' }));
+  }
+
+  if (error) {
+    alert('Fehler beim Wiederherstellen: ' + error.message);
+    btn.disabled = false;
+    btn.textContent = 'Wiederherstellen';
+  } else {
+    btn.textContent = 'Wiederhergestellt ✓';
+    await refreshList();
+    await refreshSeitenList();
+  }
+}
+
+function escapeHtmlB(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
 }
