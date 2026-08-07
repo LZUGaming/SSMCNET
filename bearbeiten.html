@@ -61,6 +61,14 @@
   .img-toolbar .rich-btn { padding: 5px 8px; font-size: 12px; white-space: nowrap; }
   .img-toolbar-sep { width: 1px; height: 20px; background: var(--border); margin: 0 2px; }
   .img-delete-btn { color: #ff8080; }
+  .verlauf-item {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .verlauf-meta { font-size: 13px; color: var(--text-secondary); }
+  .verlauf-meta b { color: var(--text-primary); }
+  .verlauf-time { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -88,11 +96,12 @@
 <div class="edit-wrap" id="edit-screen" style="display:none;">
   <span class="eyebrow">Intern</span>
   <h1 style="margin-top:14px; font-size:28px;">Website bearbeiten</h1>
-  <p class="lede" style="max-width:none; margin-top:10px;">Änderungen sind sofort live. Bitte vorsichtig sein — es gibt kein Zurück-Knopf.</p>
+  <p class="lede" style="max-width:none; margin-top:10px;">Änderungen sind sofort live. Falls doch mal was schiefgeht: im Reiter "Verlauf" lässt sich jede Änderung rückgängig machen.</p>
 
   <div style="display:flex; gap:8px; margin-top:28px; border-bottom:1px solid var(--border);">
     <button class="mode-btn active" id="mode-ausbildungen-btn" type="button">Ausbildungen</button>
     <button class="mode-btn" id="mode-seiten-btn" type="button">Seiten</button>
+    <button class="mode-btn" id="mode-verlauf-btn" type="button">Verlauf</button>
   </div>
 
   <div id="mode-ausbildungen">
@@ -158,6 +167,11 @@
       <button class="btn btn-primary" id="save-seite-btn">Speichern</button>
       <span id="save-seite-msg"></span>
     </div>
+  </div>
+
+  <div id="mode-verlauf" style="display:none;">
+    <p class="lede" style="max-width:none; margin-top:24px;">Die letzten 50 Änderungen. Bei einem Fehler einfach auf "Wiederherstellen" klicken — der Zustand von vorher ist dann sofort wieder live.</p>
+    <div id="verlauf-list" style="margin-top:20px;">Lädt…</div>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
